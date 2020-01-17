@@ -1,14 +1,16 @@
 <?php 
 
-if($argc==3){
-
+if($argc>3){
+    
     $statusCode=0 ;
 
     //Nom du Manga
     $manga_name =ucfirst($argv[1]) ;
 
-    //Chapitre
-    $chap_num = $argv[2] ;
+    for($i=2 ; $i<$argc; $chap_num++ ){
+    
+        //Numero du chapitre 
+    $chap_num=$argv[$i] ;
 
     //Page
     $p=1 ;
@@ -17,7 +19,7 @@ if($argc==3){
     $dir_name =$manga_name.' '.$chap_num ;
 
 
-    echo "Votre manga est en cours de téléchargement.." ;
+    echo  $dir_name." est en cours de téléchargement..." ;
 
     $exists = true ;
 
@@ -32,7 +34,7 @@ if($argc==3){
             $exists = true;
         }
 
-    if($exists==true){
+        if($exists==true){
             //Recherche de la page     
             $html = file_get_contents('https://www.mangapanda.com/'.$argv[1].'/'.$chap_num.'/'.$p);
             preg_match_all( '|<img.*?src=[\'"](.*?)[\'"].*?>|i',$html, $matches ); 
@@ -95,8 +97,9 @@ if($argc==3){
         }
             $p++ ;
             echo '.' ;
+        }
     }
-    
+  
     if($statusCode == 200){
         echo 'Downloaded';
     } else{
