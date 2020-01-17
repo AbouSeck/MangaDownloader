@@ -20,7 +20,7 @@ if($argc==4){
     $dir_name =$manga_name.' '.$chap_num ;
 
 
-    echo  $dir_name." est en cours de téléchargement..." ;
+    echo  "\n".$dir_name." est en cours de téléchargement..." ;
 
     $exists = true ;
 
@@ -102,13 +102,13 @@ if($argc==4){
     }
   
     if($statusCode == 200){
-        echo 'Downloaded';
+        echo "\n Downloaded";
     } else{
         echo "Votre téléchargement n'a pas pu aboutir.";
     }
 
 } else {
-    echo "Le nombre d'argument est incorrect\nVeuillez spécifier le nom du manga et le numero du chapitre" ;    
+    echo "Le nombre d'argument est incorrect\nVeuillez spécifier le nom du manga et les numeros du premier et du dernier chapitre" ;    
 }
 
 
