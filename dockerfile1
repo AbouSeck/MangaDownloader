@@ -1,0 +1,23 @@
+#publicly available docker image "php" on docker hub will be pulled
+
+FROM php:7.2-cli
+
+#creating directory Download in container (Osx machine)
+
+RUN mkdir /dockerdir
+RUN mkdir /dockerdir/manga
+WORKDIR /dockerdir/manga
+
+ENV v1 arg1
+ENV v2 arg2
+
+
+#copying Downloader.php from local directory to container's helloworld folder
+
+COPY Downloader.php /dockerdir/Downloader.php
+
+#running Downaloader.php in container
+
+CMD php -f /dockerdir/Downloadersequence.php $v1 $v2
+
+VOLUME /dockerdir/manga 
